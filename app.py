@@ -12,9 +12,10 @@ tavily_client = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
 # print("OK")
 # Select the model(s)
-MODEL_INFO = "gemini-2.0-flash"
-MODEL_SCRIPT = "gemini-2.0-flash"
-
+MODEL_INFO = "gemini-2.5-flash"
+#MODEL_INFO="gemini-3-flash"
+MODEL_SCRIPT = "gemini-2.5-flash"
+#MODEL_SCRIPT="gemini-3-flash"
 
 st.set_page_config(
     page_title="Story Forge Agent",
@@ -143,7 +144,7 @@ output only the refined, human-readable content'
     try:
         model = genai.GenerativeModel(MODEL_INFO)
         response = model.generate_content(prompt)
-        return response.text().strip() if response and response.text else source_info
+        return response.text.strip() if response and response.text else source_info
     
     except Exception as e:
         print(f"Error in generating summary: {e}")
